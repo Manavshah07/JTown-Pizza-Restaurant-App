@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="fragments/header :: head('Cart')"></head>
+  <body>
+    <div th:replace="fragments/header :: navbar"></div>
+
+    <main class="container">
+      <h2>Your Cart</h2>
+
+      <div th:if="${cart == null or #lists.isEmpty(cart)}">
+        <p>Your cart is empty. <a th:href="@{/menu}">Browse menu</a></p>
+      </div>
+
+      <div th:if="${cart != null and !#lists.isEmpty(cart)}">
+        <form th:action="@{/cart/update}" method="post">
+          <table class="cart-table">
+            <thead>
+              <tr><th>Item</th><th>Price</th><th>Qty</th><th>Subtotal</th></tr>
+            </thead>
+            <tbody>
+              <tr th:each="ci,iterStat : ${cart}">
+                <td th:text="${ci.name}">Name</td>
+                <td>₹<span th:text="${ci.price}">0.00</span></td>
+                <td><input type="number" min="1" name="qty" th:value="${ci.qty}" /></td>
+                <td>₹<span th:text="${ci.price * ci.qty}">0.00</span></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="cart-actions">
+            <p class="total">Total: ₹<span th:text="${total}">0.00</span></p>
+            <button class="btn" type="submit">Update Cart</button>
+            <a class="btn-primary" th:href="@{/checkout}">Proceed to checkout</a>
+            <form th:action="@{/cart/clear}" method="post" style="display:inline">
+              <button class="btn-secondary" type="submit">Clear cart</button>
+            </form>
+          </div>
+        </form>
+      </div>
+    </main>
+  </body>
+</html>

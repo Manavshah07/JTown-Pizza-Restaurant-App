@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="fragments/header :: head('Homepage')"></head>
+  <body>
+    <div th:replace="fragments/header :: navbar"></div>
+
+    <main class="container">
+      <section class="hero">
+        <div class="hero-inner">
+          <div>
+            <h1>Welcome to JTown Pizza</h1>
+            <p>Fresh ingredients — oven-baked perfection.</p>
+            <a class="btn-primary" th:href="@{/menu}">Order Now</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="featured">
+        <h2>Featured Items</h2>
+        <div class="grid" th:if="${items != null}">
+          <div class="card" th:each="item : ${items}">
+            <h3 th:text="${item.name}">Pizza Name</h3>
+            <p class="muted" th:text="${item.description}">Short description</p>
+            <p class="price">₹<span th:text="${item.price}">0.00</span></p>
+            <form th:action="@{'/cart/add/' + ${item.id}}" method="post">
+              <button class="btn" type="submit">Add to cart</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>&copy; <span th:text="${#dates.format(#dates.createNow(), 'yyyy')}">2025</span> JTown Pizza</p>
+      </div>
+    </footer>
+  </body>
+</html>

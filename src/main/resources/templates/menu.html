@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="fragments/header :: head('Menu')"></head>
+  <body>
+    <div th:replace="fragments/header :: navbar"></div>
+
+    <main class="container">
+      <h2>Our Menu</h2>
+      <div class="controls">
+        <input id="search" placeholder="Search menu..." oninput="filterCards()" />
+      </div>
+
+      <div class="grid" id="menu-grid">
+        <div class="card" th:each="item : ${items}" th:attr="data-name=${item.name}">
+          <h3 th:text="${item.name}">Item</h3>
+          <p class="muted" th:text="${item.description}">Description</p>
+          <p class="price">₹<span th:text="${item.price}">0.00</span></p>
+          <form th:action="@{'/cart/add/' + ${item.id}}" method="post">
+            <button class="btn" type="submit">Add to cart</button>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <script>
+    function filterCards() {
+      const term = document.getElementById('search').value.toLowerCase();
+      document.querySelectorAll('#menu-grid .card').forEach(card => {
+        const name = (card.getAttribute('data-name') || '').toLowerCase();
+        card.style.display = name.includes(term) ? '' : 'none';
+      });
+    }
+    </script>
+  </body>
+</html>

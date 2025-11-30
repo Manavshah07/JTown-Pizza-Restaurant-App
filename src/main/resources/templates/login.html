@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="fragments/header :: head('Login')"></head>
+  <body>
+    <div th:replace="fragments/header :: navbar"></div>
+
+    <main class="container narrow">
+      <h2>Login</h2>
+      <form method="post" th:action="@{/login}">
+        <div class="form-row">
+          <label>Email</label>
+          <input type="text" name="username" required />
+        </div>
+        <div class="form-row">
+          <label>Password</label>
+          <input type="password" name="password" required />
+        </div>
+        <button class="btn-primary" type="submit">Login</button>
+      </form>
+    </main>
+  </body>
+</html>

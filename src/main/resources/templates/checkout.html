@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="fragments/header :: head('Checkout')"></head>
+  <body>
+    <div th:replace="fragments/header :: navbar"></div>
+
+    <main class="container">
+      <h2>Checkout</h2>
+      <form method="post" th:action="@{/checkout}">
+        <div class="form-row">
+          <label>Name</label>
+          <input type="text" name="name" required />
+        </div>
+        <div class="form-row">
+          <label>Email</label>
+          <input type="email" name="email" required />
+        </div>
+
+        <p class="total">Total: ₹<span th:text="${total}">0.00</span></p>
+        <button class="btn-primary" type="submit">Place Order</button>
+      </form>
+    </main>
+  </body>
+</html>
