@@ -70,10 +70,10 @@ cd JTown-Pizza-Restaurant-App
 
 2. **Create a MySQL database**
 
-Open MySQL and create a database (example name `ecommerce_store`):
+Open MySQL and create a database (example name `restaurant_app`):
 
 ```sql
-CREATE DATABASE ecommerce_store;
+CREATE DATABASE restaurant_app;
 ```
 
 3. **Configure application properties**
