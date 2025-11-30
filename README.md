@@ -64,8 +64,8 @@ Users can browse the menu, register/login, add items to cart, place orders, and 
 1. **Clone the repo**
 
 ```bash
-git clone https://github.com/mdtalalwasim/Ecommerce_Store.git
-cd Ecommerce_Store
+git clone https://github.com/Manavshah07/JTown-Pizza-Restaurant-App
+cd JTown-Pizza-Restaurant-App
 ```
 
 2. **Create a MySQL database**
